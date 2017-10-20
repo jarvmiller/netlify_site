@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R on Abnormally distributed</title>
+    <link>https://jarvmiller.github.io/tags/r/</link>
+    <description>Recent content in R on Abnormally distributed</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jarvm@umich.edu (Jarvis Miller)</managingEditor>
+    <webMaster>jarvm@umich.edu (Jarvis Miller)</webMaster>
+    <lastBuildDate>Thu, 17 Aug 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jarvmiller.github.io/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Exploring flight data</title>
+      <link>https://jarvmiller.github.io/2017/08/17/exploring-flight-data/</link>
+      <pubDate>Thu, 17 Aug 2017 00:00:00 +0000</pubDate>
+      <author>jarvm@umich.edu (Jarvis Miller)</author>
+      <guid>https://jarvmiller.github.io/2017/08/17/exploring-flight-data/</guid>
+      <description>Background The given dataset comes from the Office of Airline Information, Bureau of Transportation Statistics (BTS). It consists of contains on-time arrival data for non-stop domestic flights by major air carriers, monthly from 1987 to 2017, and provides information such as departure and arrival delays, origin and destination airports, flight numbers, scheduled and actual departure and arrival times, canceled or diverted flights, taxi-out and taxi-in times, air time, and non-stop distance.</description>
+    </item>
+    
+    <item>
+      <title>Data from DataCamp</title>
+      <link>https://jarvmiller.github.io/2017/07/30/data-from-datacamp/</link>
+      <pubDate>Sun, 30 Jul 2017 00:00:00 +0000</pubDate>
+      <author>jarvm@umich.edu (Jarvis Miller)</author>
+      <guid>https://jarvmiller.github.io/2017/07/30/data-from-datacamp/</guid>
+      <description>DataCamp boasts to be “the easiest way to learn Data Science Online” and has courses of different levels taught using R or python. I wanted to see how popular some of the courses were and which technology they used, so a quick use of rvest was required. Rvest is a package developed by Hadley Wickham that allows one to easily scrape web pages. Below is the function used to get the relative links for each course based on the technology used.</description>
+    </item>
+    
+  </channel>
+</rss>

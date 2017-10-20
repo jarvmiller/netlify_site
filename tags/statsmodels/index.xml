@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Statsmodels on Abnormally distributed</title>
+    <link>https://jarvmiller.github.io/tags/statsmodels/</link>
+    <description>Recent content in Statsmodels on Abnormally distributed</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>jarvm@umich.edu (Jarvis Miller)</managingEditor>
+    <webMaster>jarvm@umich.edu (Jarvis Miller)</webMaster>
+    <lastBuildDate>Fri, 23 Jun 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://jarvmiller.github.io/tags/statsmodels/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>GSOC III</title>
+      <link>https://jarvmiller.github.io/2017/06/23/gsoc-iii/</link>
+      <pubDate>Fri, 23 Jun 2017 00:00:00 +0000</pubDate>
+      <author>jarvm@umich.edu (Jarvis Miller)</author>
+      <guid>https://jarvmiller.github.io/2017/06/23/gsoc-iii/</guid>
+      <description>This week was a busy one. Implemented most of the survey summary statistics and the jackknife to estimate their standard error. This was my first time learning about the jackknife and I thought it was an interesting topic to tell you all about. Within survey data, you tend to have strata and PSUs within the strata that make up subgroups. Now, let&amp;rsquo;s assume that we want to calculate the mean for your survey data - this entails something along the lines of</description>
+    </item>
+    
+    <item>
+      <title>GSOC II</title>
+      <link>https://jarvmiller.github.io/2017/06/15/gsoc-ii/</link>
+      <pubDate>Thu, 15 Jun 2017 00:00:00 +0000</pubDate>
+      <author>jarvm@umich.edu (Jarvis Miller)</author>
+      <guid>https://jarvmiller.github.io/2017/06/15/gsoc-ii/</guid>
+      <description>Another blog post about my journey with GSOC. This week I&amp;rsquo;m implementing some summary statistics for survey data. Surrvey methodology quite resembles ordinary statistical methodology, but there are some pervasive subtleties there due to the importance of the study design for doing standard errors, tests and confidence intervals in a defensible manner. Learning what others have done to make robust analyses with their survey data is quite fun. The hard part is of course the implementation.</description>
+    </item>
+    
+    <item>
+      <title>GSOC I</title>
+      <link>https://jarvmiller.github.io/2017/05/09/gsoc-i/</link>
+      <pubDate>Tue, 09 May 2017 00:00:00 +0000</pubDate>
+      <author>jarvm@umich.edu (Jarvis Miller)</author>
+      <guid>https://jarvmiller.github.io/2017/05/09/gsoc-i/</guid>
+      <description>This summer I&amp;rsquo;ll be working on implementing Survey Methods in StatsModels thanks to Google Summer of Code (GSOC). I&amp;rsquo;m excited because I took my first official programming course last semester (C++ seems to stand strong against the test of time) and get to learn more about open source software development.
+I still remember the first programming course I signed up for during my freshman year at Rice. I dropped after the first week.</description>
+    </item>
+    
+  </channel>
+</rss>

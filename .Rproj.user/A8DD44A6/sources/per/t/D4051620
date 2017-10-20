@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1508529307970.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "627213089",
+    "id" : "D4051620",
+    "lastKnownWriteTime" : 1508529325,
+    "last_content_update" : 1508529325147,
+    "path" : "~/website/content/post/2017-10-20-neural-networks-units-and-decision-boundaries.Rmd",
+    "project_path" : "content/post/2017-10-20-neural-networks-units-and-decision-boundaries.Rmd",
+    "properties" : {
+        "cursorPosition" : "19,268",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

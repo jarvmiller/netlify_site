@@ -1,0 +1,45 @@
+baseurl = "/"
+languageCode = "en-us"
+title = "Abnormally distributed"
+theme = "beautifulhugo"
+googleAnalytics = ""
+disqusShortname = "jarvm"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
+
+[Params]
+  logo = "icon.png"
+  favicon = "icon.png"
+
+[permalinks]
+    post = "/:year/:month/:day/:slug/"
+
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+
+[[menu.main]]
+    name = "Tags"
+    url = "/tags/"
+    
+[params]
+    description = "Me pretending that grad school is more than struggling."
+    # options for highlight.js (version, additional languages, and theme)
+    highlightjsVersion = "9.11.0"
+    highlightjsCDN = "//cdn.bootcss.com"
+    highlightjsLang = ["r", "yaml"]
+    highlightjsTheme = "github"
+
+    MathJaxCDN = "//cdn.bootcss.com"
+    MathJaxVersion = "2.7.1"
+
+    [params.logo]
+    url = "img/icon.png"
+    width = 50
+    height = 50
+    alt = "Logo"
+
+[Author]
+  name = "Jarvis Miller"
+  email = "jarvm@umich.edu"
+  github = "jarvmiller"
+  twitter = "jarvmiller"

@@ -1,0 +1,134 @@
+---
+title: Data from DataCamp
+author: ~
+date: '2017-07-30'
+slug: ''
+categories: []
+tags: [r]
+subtitle: ''
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, fig.height=3, warning=FALSE, message=FALSE, fig.align='center')
+library(rvest)
+library(stringr)
+library(dplyr)
+library(ggplot2)
+```
+
+DataCamp boasts to be "the easiest way to learn Data Science Online" and has courses of different levels taught using R or python. I wanted to see how popular some of the courses were and which technology they used, so a quick use of rvest was required. Rvest is a package developed by Hadley Wickham that allows one to easily scrape web pages. Below is the function used to get the relative links for each course based on the technology used.
+```{r get_links}
+get_course_links <- function(technology){
+  url <- paste('https://www.datacamp.com/courses/tech:', technology, sep='')
+  html <- read_html(url)
+  courses_title <- html_nodes(html, css='.course-block__link') %>% 
+    html_attr('href')
+  return(courses_title)
+}
+```
+
+```{r get all courses, echo=FALSE}
+
+get_course_data <- function(relative_url){
+  
+  abs_url <- paste('https://www.datacamp.com', relative_url, sep='')
+  html <- read_html(abs_url)
+  li <- html_node(html, css=".header-hero__stats") %>% html_text() %>%
+    str_split(., '\n')
+  li <- li[[1]] %>% gsub('[^0-9]','', .)
+  li <- li[1:5]
+
+  title <- html_node(html, css='.header-hero__title') %>% html_text()
+  
+
+  paid_or_not <- html_node(html, css='.header-hero__uptitle') %>% html_text()
+  paid_or_not <- ifelse(grepl('free', paid_or_not), 
+                                     'Y',
+                                     'N')
+  # maybe get number_prereqs as well
+  pre_reqs <- html_nodes(html, css='.mb-sm') %>% html_text()
+  # see if it's either the 3rd entry in an array the entire time
+  # or do a regex for prerequisites, then blah blah
+  pre_reqs <- pre_reqs[3] 
+  pre_reqs <- str_split(pre_reqs, '\n')[[1]] 
+  ind <- pre_reqs %>% str_trim() %>% grep('[A-Z]', .)
+  num_reqs <- ifelse(length(ind) > 1,
+                     length(ind) - 1,
+                     0) 
+  course_data <- c(title, paid_or_not, num_reqs, li)
+  return(course_data)
+}
+
+tidy_course_data <- function(dat, technology){
+  df <- do.call(rbind.data.frame, dat)
+  colnames(df) <- c('title', 'free_or_not', 'num_prereqs',"num_hours", 
+                    "num_vids", "num_exercises", 'num_participants', 'num_xp')
+  df <- df %>% mutate_at(vars(matches("num")),funs(as.character)) %>%
+    mutate_at(vars(matches("num")),funs(as.numeric))
+  df['tech'] <- technology
+  return(df)
+}
+
+# course_url_R <- get_course_links('R')
+# course_data_R <- lapply(course_url_R, get_course_data) 
+# r_df <- tidy_course_data(course_data_R, 'R')
+# # arrange(r_df, desc(num_participants)) %>% top_n(10, num_participants)
+# 
+# course_url_py <- get_course_links('python')
+# course_data_py <- lapply(course_url_py, get_course_data)
+# py_df <- tidy_course_data(course_data_py, 'python')
+# # arrange(py_df, desc(num_participants)) %>% top_n(10, num_participants)
+# 
+# course_url_sql<- get_course_links('sql')
+# course_data_sql <- lapply(course_url_sql, get_course_data) 
+# sql_df <- tidy_course_data(course_data_sql, 'sql')
+# # arrange(sql_df, desc(num_participants)) %>% top_n(10)
+# courses_all <- rbind(r_df, py_df, sql_df)
+```
+I essentially go to the page, find which parts of the page correspond to the specified css paths, then which parts have the specified 'href' attribute i.e. which are links.
+
+I then wrote another function *get_course_data*, that uses rvest, dplyr, some stringr with regex, etc. to get information for each course such as the number of participants, title of course, number of pre-requisites, so on and so forth. Below are the five courses using R or Python with the most number of participants. As you can see, there are only two courses under 'SQL', as other database courses seem to focus on dplyr (R) or pysqlite (python) and are thus under those categories.
+```{r course_scrape}
+courses_all <- read.csv("dat/all_courses_scrape_df.csv")
+arranged_courses <- courses_all %>% group_by(tech) %>% 
+  select(title, num_participants, num_prereqs, tech) %>% 
+  arrange(desc(num_participants)) %>% split(., .$tech, drop=T)
+
+arranged_courses$python %>% top_n(5, num_participants)
+arranged_courses$R %>% top_n(5, num_participants)
+arranged_courses$sql
+```
+Below are the number of courses w/ prerequisites as well as the number of people who took those courses. It's nice to see that DataCamp has a number of courses that have 3+ pre-requisites, evidence that their courses build off of one another instead of just stopping at the basics.
+```{r pre_reqs}
+courses_all %>% group_by(num_prereqs) %>% 
+  summarise(avg_num_participants = mean(num_participants),
+            tot_num_participants = sum(num_participants),
+            n = n())
+
+```
+I was curious as to the point of XP given per course. I initially thought that "more difficult courses will give more XP per exercise", and thus did the following:
+```{r xp_plt}
+ggplot(courses_all) + geom_point(aes(x=num_exercises, y=num_xp)) + facet_grid(~num_prereqs) + 
+  labs(x="Number of exercises", y='Experience', title='Split by number of prerequisites') + theme(axis.ticks.x=element_blank()) + theme_bw()
+```
+I assumed that the more difficult courses tend to have more prerequisites, which may not be true as for many users, the first course might have the steepest learning curve and thus be the most difficult for them. But anyway, under my assumption I thought I'd see more experience given for the same number of exercises as the number of prerequistes increase. Not the case. Still not sure of the point of XP given per course haha..
+
+Now comes the part that I really wish DataCamp gave the age of the course or the day it was released. I wanted to see which technology was 'more popular', but of course with the current data I can't answer that. Anyway, first lets try just looking at the average number of participants by technology.
+```{r tech_participants}
+courses_all %>% group_by(tech) %>% 
+  summarise(avg_num_participants=mean(num_participants),
+            avg_num_hours = mean(num_hours),
+            most_popular_course = max(num_participants),
+            total_participants = sum(num_participants),
+            n = n())
+
+```
+There are many more R courses but python courses seems to have the higher average number of participants even though R has the most popular course. Let's look at a boxplot. It's zoomed in to stop at the whiskers.
+```{r tech_boxplot}
+ggplot(courses_all, aes(x=tech, y=num_participants)) + geom_boxplot() + 
+  geom_jitter(width=.2) + 
+  coord_cartesian(ylim = quantile(courses_all$num_participants, c(0.1, .95))) +
+  theme_bw()
+```
+Yes, there are a number of R courses that are more popular than Python courses, but there are also many R courses that have very few participants. This is why I wish I could know when each course started. I'm not sure whether these courses were unpopular or whether they're just new.
+
+There are plenty other things I can look at, but I'll stop for now as the post is getting plenty long. If you want the scraped data, you can find the code on my Github!
