@@ -10,7 +10,7 @@ date: "2016-05-05T21:48:51-07:00"
 
 I am now a first year Statistics PhD student at University of Michigan. I'm a relatively new addict to all things Data Science and making sure that what I do is computationally feasible and able to be interpreted by a non-technical body.
 While being buried in homework, I try to take online courses related to computing and attempt small projects like this blog to put things into practice.
-My research interests are pretty vague at this moment, but I'm learning towards something related to infectious disease modeling. I hope to work with disease genotype data and get more involved with making packages and high performance computing.
+My research interests are related to infectious disease forecasting using text data (social media, news reports, google search queries, etc).
 
 **All in all, I'm passionate about data visualization and making complex things easier to digest.**
 

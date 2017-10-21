@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"About\"\ndate: \"2016-05-05T21:48:51-07:00\"\n---\n\n![it me](../portrait.png)\n\n## Hey, I'm Jarvis Miller\n\n\nI am now a first year Statistics PhD student at University of Michigan. I'm a relatively new addict to all things Data Science and making sure that what I do is computationally feasible and able to be interpreted by a non-technical body.\nWhile being buried in homework, I try to take online courses related to computing and attempt small projects like this blog to put things into practice.\nMy research interests are related to infectious disease forecasting using text data (social media, news reports, google search queries, etc).\n\n**All in all, I'm passionate about data visualization and making complex things easier to digest.**\n\nIf you want to reach out to me, you can find my email and twitter in the little widgets below. I'm always happy to chat about what I love and hear others chat about what they love.",
+    "created" : 1508544724948.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1578782235",
+    "id" : "F925E8D7",
+    "lastKnownWriteTime" : 1508544903,
+    "last_content_update" : 1508544903299,
+    "path" : "~/website/content/about.md",
+    "project_path" : "content/about.md",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "markdown"
+}
