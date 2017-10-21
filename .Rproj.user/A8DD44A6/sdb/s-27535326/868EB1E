@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "name = \"Beautiful Hugo\"\nlicense = \"MIT\"\nlicenselink = \"https://github.com/halogenica/Hugo-BeautifulHugo/blob/master/LICENSE\"\ndescription = \"A port of Beautiful Jekyll theme\"\ntags = [\"blog\", \"company\", \"portfolio\", \"projects\", \"minimal\", \"responsive\"]\nfeatures = [\"blog\", \"themes\", \"disqus\", \"minimal\", \"responsive\"]\nmin_version = 0.17\n\n[author]\n    name = \"halogenica\"\n    homepage = \"http://halogenica.net\"\n\n# If Porting existing theme\n[original]\n    author =  \"dattali\"\n    homepage = \"http://deanattali.com/beautiful-jekyll/\"\n    repo = \"https://github.com/daattali/beautiful-jekyll\"\n\n",
+    "created" : 1508571266802.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1595158776",
+    "id" : "868EB1E",
+    "lastKnownWriteTime" : 1508535733,
+    "last_content_update" : 1508535733,
+    "path" : "~/website/themes/beautifulhugo/theme.toml",
+    "project_path" : "themes/beautifulhugo/theme.toml",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "text"
+}
