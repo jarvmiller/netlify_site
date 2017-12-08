@@ -3,13 +3,13 @@ title: Understanding OAuth
 author: ~
 date: '2017-11-06'
 slug: understanding-oauth
-categories: [python, API]
-tags: []
+categories: [python]
+tags: [python, data]
 ---
 
 
 
-<p>I should definitely finish the other parts of the NN posts, but here is a brief detour into OAuth (Open Authorization). Note that I am still a notice and so there might be explanations that are missing information or lacking depth. But this is a way for me to synthesize what I know, so please message me if there are any mistakes!</p>
+<p>I should definitely finish the other parts of the NN posts, but here is a brief detour into OAuth (Open Authorization). Note that I am still a novice and so there might be explanations that are missing information or lacking depth. But this is a way for me to synthesize what I know, so please message me if there are any mistakes!</p>
 <p>So what is the point of OAuth? As I’ve seen it, it’s a way for web services or apps to exchange information without compromising the people using apps. For example, one might use Spotify for the first time and notice that it lets you do something like connect your Spotify account with the Spotify account of your Facebook friends. This usually means Spotify also gets access to certain information from your Facebook account that they consider helpful (e.g your friend list). Now, how does Facebook give Spotify certain data without Spotify having access to your username and password? This is where OAuth comes in. OAuth is an authorization protocol – or in other words, a set of rules – that allows a third-party website or application to access a user’s data without the user needing to share login credentials. (from Technopedia)</p>
 <p>Note that there is OAuth1 and OAuth2. OAuth2 is a bit simplified and allows flexibility (for reasons I’m not too sure of yet). This is what I learned so for now on we will focus on OAuth2. This requires three ‘players’ involved</p>
 <ul>
@@ -21,20 +21,20 @@ tags: []
 <ol style="list-style-type: decimal">
 <li>User tells Client (Spotify) to connect to Server (FB)
 <ul>
-<li>This usually looks like clicking on some sort of button that says ‘import contacts’ or something <img src="figs/spotify_invitation.png" alt="Spotify asking if I want to give it my FB data for ease" /></li>
+<li>This usually looks like clicking on some sort of button that says ‘import contacts’ or something <img src="/figs/spotify_invitation.png" alt="Spotify asking if I want to give it my FB data for ease" /></li>
 </ul></li>
-<li>Client (Spotify) directs User to Server (FB)
+<li>Client (Spotify) directs User to Server (FB) <img src="/figs/spotify_connection.png" alt="Spotify directs me to FB so I can potentially give access" />
 <ul>
-<li>Note that the Client also sends a URL that the server sends us back to after we’re done talking to the Server. This is called a <em>redirect url</em>. <img src="figs/spotify_connection.png" alt="Spotify directs me to FB so I can potentially give access" /></li>
+<li>Note that the Client also sends a URL that the server sends us back to after we’re done talking to the Server. This is called a <em>redirect uri</em>.</li>
 </ul></li>
 <li>User grants Client (Spotify) access
 <ul>
-<li>This might look like a box popping up or that says “Allow xyz app access to your friends list” or “Please log into your account to allow access” and you can click the allow button or log in. <img src="figs/spotify_authorization.png" alt="Me maybe giving Facebook confirmation that it can give Spotify my FB friend list" /></li>
+<li>This might look like a box popping up or that says “Allow xyz app access to your friends list” or “Please log into your account to allow access” and you can click the allow button or log in. <img src="/figs/spotify_authorization.png" alt="Me maybe giving Facebook confirmation that it can give Spotify my FB friend list" /></li>
 </ul></li>
 <li>The Server (Facebook) sends the User back to the Client (Spotify) along with a authorization code</li>
 <li>Client (Spotify) exchanges authorization code and identification info for an access token
 <ul>
-<li>This means the client makes another request to the server using the recently received authorization code along with something called a secret key. This is so that the server really knows that the Client is the real deal. The Client then gives an <em>access token</em>.</li>
+<li>This means the client makes another request to the server using the recently received authorization code along with something called a secret key. This is so that the server really knows that the Client is the real deal. The Client is then given an <em>access token</em>.</li>
 </ul></li>
 <li>Client (Spotify) fetches data from the Server (Facebook) using the access token</li>
 <li>???</li>
@@ -68,7 +68,8 @@ def save_token(token_dict):
 # import json
 # import requests
 # import requests_oauthlib
-def get_eventbrite_cache(search_params, CACHE_DICTION, CACHE_FNAME, force_download=False):
+def get_eventbrite_cache(search_params, CACHE_FNAME, force_download=False):
+    CACHE_DICTION = check_if_cached(CACHE_FNAME)
     # if we need to get an oauth2 session started
     if CACHE_DICTION == {} or force_download:
         # see if we have the token

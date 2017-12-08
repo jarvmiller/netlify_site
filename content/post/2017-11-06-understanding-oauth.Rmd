@@ -3,11 +3,11 @@ title: Understanding OAuth
 author: ~
 date: '2017-11-06'
 slug: understanding-oauth
-categories: [python, API]
-tags: []
+categories: [python]
+tags: [python, data]
 ---
 
-I should definitely finish the other parts of the NN posts, but here is a brief detour into OAuth (Open Authorization). Note that I am still a notice and so there might be explanations that are missing information or lacking depth. But this is a way for me to synthesize what I know, so please message me if there are any mistakes!
+I should definitely finish the other parts of the NN posts, but here is a brief detour into OAuth (Open Authorization). Note that I am still a novice and so there might be explanations that are missing information or lacking depth. But this is a way for me to synthesize what I know, so please message me if there are any mistakes!
 
 So what is the point of OAuth? As I've seen it, it's a way for web services or apps to exchange information without compromising the people using apps. For example, one might use Spotify for the first time and notice that it lets you do something like connect your Spotify account with the Spotify account of your Facebook friends. This usually means Spotify also gets access to certain information from your Facebook account that they consider helpful (e.g your friend list). Now, how does Facebook give Spotify certain data without Spotify having access to your username and password? This is where OAuth comes in. OAuth is an authorization protocol -- or in other words, a set of rules --  that allows a third-party website or application to access a user's data without the user needing to share login credentials. (from Technopedia)
 
@@ -22,16 +22,17 @@ How does this work? We have the following steps
 
 1. User tells Client (Spotify) to connect to Server (FB)
     + This usually looks like clicking on some sort of button that says 'import contacts' or something
-![Spotify asking if I want to give it my FB data for ease](figs/spotify_invitation.png)
+![Spotify asking if I want to give it my FB data for ease](/figs/spotify_invitation.png)
 2. Client (Spotify) directs User to Server (FB)
-    + Note that the Client also sends a URL that the server sends us back to after we're done talking to the Server. This is called a *redirect url*.
-![Spotify directs me to FB so I can potentially give access](figs/spotify_connection.png)
+![Spotify directs me to FB so I can potentially give access](/figs/spotify_connection.png)
+    + Note that the Client also sends a URL that the server sends us back to after we're done talking to the Server. This is called a *redirect uri*.
+
 3. User grants Client (Spotify) access
     + This might look like a box popping up or that says "Allow xyz app access to your friends list" or "Please log into your account to allow access" and you can click the allow button or log in.
-![Me maybe giving Facebook confirmation that it can give Spotify my FB friend list](figs/spotify_authorization.png)
+![Me maybe giving Facebook confirmation that it can give Spotify my FB friend list](/figs/spotify_authorization.png)
 4. The Server (Facebook) sends the User back to the Client (Spotify) along with a authorization code
 5. Client (Spotify) exchanges authorization code and identification info for an access token
-    + This means the client makes another request to the server using the recently received authorization code along with something called a secret key. This is so that the server really knows that the Client is the real deal. The Client then gives an *access token*.
+    + This means the client makes another request to the server using the recently received authorization code along with something called a secret key. This is so that the server really knows that the Client is the real deal. The Client is then given an *access token*.
 6. Client (Spotify) fetches data from the Server (Facebook) using the access token
 7. ???
 8. Profit
@@ -73,7 +74,8 @@ There might be times that you already have the data cached, but you want to forc
 # import json
 # import requests
 # import requests_oauthlib
-def get_eventbrite_cache(search_params, CACHE_DICTION, CACHE_FNAME, force_download=False):
+def get_eventbrite_cache(search_params, CACHE_FNAME, force_download=False):
+    CACHE_DICTION = check_if_cached(CACHE_FNAME)
     # if we need to get an oauth2 session started
     if CACHE_DICTION == {} or force_download:
         # see if we have the token
